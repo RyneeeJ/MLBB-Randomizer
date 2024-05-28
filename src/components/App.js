@@ -31,6 +31,7 @@ function App() {
   const [isAddingPlayer, setIsAddingPlayer] = useState(true);
   const [isGeneratingHero, setIsGeneratingHero] = useState(false);
   const [players, setPlayers] = useState([]);
+  const [roleListClass, setRoleListClass] = useState("list");
 
   function handleAddPlayer() {
     if (players.length === 5) return;
@@ -40,7 +41,6 @@ function App() {
         role: null,
         hero: null,
         id: Date.now(),
-        isEditing: false,
       };
 
       return [...prevPlayers, newPlayer];
@@ -53,21 +53,12 @@ function App() {
     );
   }
 
-  function handleEditName(id) {
-    setPlayers((prevPlayers) =>
-      prevPlayers.map((player) => {
-        return { ...player, isEditing: player.id === id ? true : false };
-      })
-    );
-  }
-
-  function handleSaveName(id, newName) {
-    setPlayers((prevPlayers) =>
-      prevPlayers.map((player) => {
+  function handleInputName(id, nameInput) {
+    setPlayers((players) =>
+      players.map((player) => {
         return {
           ...player,
-          userName: player.id === id ? newName : player.userName,
-          isEditing: false,
+          userName: player.id === id ? nameInput : player.userName,
         };
       })
     );
@@ -77,10 +68,8 @@ function App() {
     const isNameInvalid = players.some(
       (player) => player.userName.trim() === ""
     );
-
-    const isStillEditing = players.some((player) => player.isEditing === true);
     // Check if all the players' names are confirmed
-    if (isNameInvalid || isStillEditing) return;
+    if (isNameInvalid) return;
 
     setIsAddingPlayer(false);
 
@@ -123,8 +112,8 @@ function App() {
           onRemovePlayer={handleRemovePlayer}
           isAddingPlayer={isAddingPlayer}
           players={players}
-          onToggleEdit={handleEditName}
-          onSaveName={handleSaveName}
+          onInputName={handleInputName}
+          roleListClass={roleListClass}
         />
         <LowerButtonsGroup
           isAddingPlayer={isAddingPlayer}
@@ -132,6 +121,7 @@ function App() {
           onGenerateRoles={handleGenerateRoles}
           onChangePlayers={handleChangePlayers}
           onGenerateHeroes={handleGenerateHeroes}
+          setRoleListClass={setRoleListClass}
         />
       </main>
       {isGeneratingHero && <CountdownModal onStopTimer={handleStopTimer} />}
