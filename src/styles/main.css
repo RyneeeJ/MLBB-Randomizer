@@ -30,6 +30,9 @@ button {
   display: none;
 }
 
+.highlight {
+  box-shadow: 0 0 15px #c4d2b7;
+}
 /************** HEADER **************/
 
 .title {
@@ -95,6 +98,7 @@ button {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  transition: all 0.3s;
 }
 
 .list-row {
@@ -108,17 +112,20 @@ button {
   height: 64px;
 }
 
-.name-options-btn {
+.remove-player-btn,
+.name-label {
   color: #979797;
-  width: 4rem;
+  width: 8rem;
   background-color: transparent;
+  font-size: 1rem;
   border: none;
 }
 
-.name-options-btn span {
+.remove-player-btn span,
+.name-label {
   cursor: pointer;
 }
-.name-options-btn span:hover {
+.remove-player-btn span:hover {
   text-decoration: underline;
 }
 
@@ -129,7 +136,7 @@ button {
 
 .name-input::placeholder {
   text-align: center;
-  color: #000;
+  color: #7f7f7f;
 }
 
 .name-input {

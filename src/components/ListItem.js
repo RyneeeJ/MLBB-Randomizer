@@ -1,46 +1,29 @@
-import { useEffect, useRef } from "react";
 import aamon from "../imgs/hero-imgs/aamon.png";
 
 export default function ListItem({
   type,
   isAddingPlayer,
   onRemovePlayer,
-  isEditing,
-  onToggleEdit,
-  onSaveName,
   id,
-  role = undefined,
+  onInputName,
+  children,
+  name,
+  label,
 }) {
-  const nameInputEl = useRef(null);
-
-  function handleClick(id, newName) {
-    if (isEditing) {
-      onSaveName(id, newName);
-    } else onToggleEdit(id);
-  }
-
-  // auto focus on current input element when editing
-  useEffect(
-    function () {
-      if (!isEditing) return;
-      nameInputEl.current.focus();
-    },
-    [isEditing]
-  );
-
   let item;
-  if (type === "Name") {
+  if (type === "Input") {
     item = (
       <input
         type="text"
         placeholder="Name"
         className="name-input"
-        disabled={!isEditing}
-        ref={nameInputEl}
+        value={name}
+        onChange={(e) => onInputName(id, e.currentTarget.value)}
+        id={label}
       />
     );
-  } else if (type === "Role") {
-    item = <div className="player-info">{role}</div>;
+  } else if (type === "Role" || type === "Name") {
+    item = <div className="player-info">{children}</div>;
   } else if (type === "Hero") {
     item = (
       <div className="list-row">
@@ -53,16 +36,14 @@ export default function ListItem({
     <li>
       <div className="list-row">
         {isAddingPlayer && (
-          <button className="name-options-btn">
-            <span onClick={() => handleClick(id, nameInputEl.current.value)}>
-              {isEditing ? "Confirm" : "Edit"}
-            </span>
-          </button>
+          <label className="name-label" htmlFor={label}>
+            <span>{label}</span>
+          </label>
         )}
 
         {item}
         {isAddingPlayer && (
-          <button onClick={onRemovePlayer} className="name-options-btn">
+          <button onClick={onRemovePlayer} className="remove-player-btn">
             <span>Remove</span>
           </button>
         )}
