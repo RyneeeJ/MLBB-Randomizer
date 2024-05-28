@@ -4,6 +4,7 @@ import CountdownModal from "./CountdownModal";
 import Header from "./Header";
 import ListContainer from "./ListContainer";
 import LowerButtonsGroup from "./LowerButtonsGroup";
+import { heroes, roleCategory } from "../heroData";
 
 const roles = ["Jungler", "Mid laner", "Gold laner", "Exp laner", "Roamer"];
 
@@ -30,8 +31,9 @@ function randomizeSelection(totalNumResults, choicesArray) {
 function App() {
   const [isAddingPlayer, setIsAddingPlayer] = useState(true);
   const [isGeneratingHero, setIsGeneratingHero] = useState(false);
+  const [isHeroGenerated, setIsHeroGenerated] = useState(false);
   const [players, setPlayers] = useState([]);
-  const [roleListClass, setRoleListClass] = useState("list");
+  const [roleClass, setRoleClass] = useState("player-info");
 
   function handleAddPlayer() {
     if (players.length === 5) return;
@@ -39,7 +41,8 @@ function App() {
       const newPlayer = {
         userName: "",
         role: null,
-        hero: null,
+        heroName: "",
+        heroImage: null,
         id: Date.now(),
       };
 
@@ -80,6 +83,8 @@ function App() {
         return { ...player, role: selectedRoles[i] };
       })
     );
+
+    setIsHeroGenerated(false);
   }
 
   function handleChangePlayers() {
@@ -89,14 +94,59 @@ function App() {
         return { ...player, role: undefined };
       })
     );
-  }
 
-  function handleGenerateHeroes() {
-    setIsGeneratingHero(true);
+    setIsHeroGenerated(false);
   }
 
   function handleStopTimer() {
     setIsGeneratingHero(false);
+  }
+
+  function handleGenerateHeroes() {
+    setIsGeneratingHero(true);
+    const rolesArr = players.map((player) => player.role);
+
+    const updatedRoleCategory = { ...roleCategory };
+
+    // console.log(updatedRoleCategory);
+    const selectedHeroArr = rolesArr.map((role) => {
+      // Transformed the string for comparison
+      const roleLowerCase = role.replace(" ", "").toLowerCase();
+      // Generate random hero
+      const randomHero = randomizeSelection(
+        1,
+        updatedRoleCategory[roleLowerCase]
+      )[0];
+
+      // Delete generated hero from role category array before randomization for the next role to avoid repetition of hero selected
+      const entriesArr = Object.entries(updatedRoleCategory);
+
+      // console.log(entriesArr);
+      entriesArr.forEach(([role, heroArr]) => {
+        const filteredArray = heroArr.filter((hero) => hero !== randomHero);
+        updatedRoleCategory[role] = filteredArray;
+      });
+
+      return randomHero;
+    });
+
+    const selectedHeroImageArr = selectedHeroArr.map((randomizedHero) => {
+      const heroObj = heroes.find((obj) => obj.hero === randomizedHero);
+
+      return heroObj.image;
+    });
+
+    setPlayers((players) =>
+      players.map((player, i) => {
+        return {
+          ...player,
+          heroImage: selectedHeroImageArr[i],
+          heroName: selectedHeroArr[i],
+        };
+      })
+    );
+
+    setIsHeroGenerated(true);
   }
 
   return (
@@ -113,7 +163,8 @@ function App() {
           isAddingPlayer={isAddingPlayer}
           players={players}
           onInputName={handleInputName}
-          roleListClass={roleListClass}
+          roleClass={roleClass}
+          isHeroGenerated={isHeroGenerated}
         />
         <LowerButtonsGroup
           isAddingPlayer={isAddingPlayer}
@@ -121,7 +172,7 @@ function App() {
           onGenerateRoles={handleGenerateRoles}
           onChangePlayers={handleChangePlayers}
           onGenerateHeroes={handleGenerateHeroes}
-          setRoleListClass={setRoleListClass}
+          setRoleClass={setRoleClass}
         />
       </main>
       {isGeneratingHero && <CountdownModal onStopTimer={handleStopTimer} />}

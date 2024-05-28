@@ -30,9 +30,6 @@ button {
   display: none;
 }
 
-.highlight {
-  box-shadow: 0 0 15px #c4d2b7;
-}
 /************** HEADER **************/
 
 .title {
@@ -98,7 +95,6 @@ button {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  transition: all 0.3s;
 }
 
 .list-row {
@@ -153,6 +149,17 @@ button {
   color: #000;
   border-radius: 3px;
   border: none;
+  transition: all 0.3s;
+}
+
+.player-info.highlight {
+  box-shadow: inset 0 0 8px 2px #12372a;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #adbc9f inset !important;
 }
 
 /************** MODAL **************/

@@ -5,7 +5,8 @@ export default function ListContainer({
   onRemovePlayer,
   players,
   onInputName,
-  roleListClass,
+  roleClass,
+  isHeroGenerated,
 }) {
   return (
     <div className="list-container">
@@ -14,7 +15,7 @@ export default function ListContainer({
           {players.map((player, i) => (
             <ListItem
               key={player.id}
-              type="Input"
+              type="input"
               isAddingPlayer={isAddingPlayer}
               onRemovePlayer={() => onRemovePlayer(player.id)}
               id={player.id}
@@ -30,14 +31,27 @@ export default function ListContainer({
         <>
           <ul className="list">
             {players.map((player) => (
-              <ListItem type="Name" key={player.id}>
+              <ListItem type="name" key={player.id}>
                 {player.userName}
               </ListItem>
             ))}
           </ul>
-          <ul className={roleListClass}>
+
+          {isHeroGenerated && (
+            <ul className="list">
+              {players.map((player) => (
+                <ListItem
+                  type="hero"
+                  key={player.id}
+                  imgSrc={player.heroImage}
+                  heroName={player.heroName}
+                />
+              ))}
+            </ul>
+          )}
+          <ul className="list">
             {players.map((player) => (
-              <ListItem type="Role" key={player.id}>
+              <ListItem type="role" key={player.id} roleClass={roleClass}>
                 {player.role}
               </ListItem>
             ))}

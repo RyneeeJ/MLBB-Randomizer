@@ -5,15 +5,15 @@ export default function LowerButtonsGroup({
   onGenerateRoles,
   onChangePlayers,
   onGenerateHeroes,
-  setRoleListClass,
+  setRoleClass,
 }) {
   function handleSetRoles() {
-    setRoleListClass((prevClass) => `${prevClass} highlight`);
+    setRoleClass((prevClass) => `${prevClass} highlight`);
 
     onGenerateRoles();
 
     setTimeout(function () {
-      setRoleListClass("list");
+      setRoleClass("player-info");
     }, 1000);
   }
 

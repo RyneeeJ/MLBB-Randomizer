@@ -1,5 +1,3 @@
-import aamon from "../imgs/hero-imgs/aamon.png";
-
 export default function ListItem({
   type,
   isAddingPlayer,
@@ -9,9 +7,12 @@ export default function ListItem({
   children,
   name,
   label,
+  roleClass,
+  imgSrc,
+  heroName,
 }) {
   let item;
-  if (type === "Input") {
+  if (type === "input") {
     item = (
       <input
         type="text"
@@ -22,12 +23,18 @@ export default function ListItem({
         id={label}
       />
     );
-  } else if (type === "Role" || type === "Name") {
+  } else if (type === "role") {
+    item = <div className={roleClass}>{children}</div>;
+  } else if (type === "name") {
     item = <div className="player-info">{children}</div>;
-  } else if (type === "Hero") {
+  } else if (type === "hero") {
     item = (
       <div className="list-row">
-        <img className="hero-img" src={aamon} alt="aamon from mobile legends" />
+        <img
+          className="hero-img"
+          src={imgSrc}
+          alt={`${heroName} from mobile legends`}
+        />
       </div>
     );
   }
