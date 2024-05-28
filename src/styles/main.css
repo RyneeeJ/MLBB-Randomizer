@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #12372a;
+  font-family: "Cinzel", serif;
+}
+
+button {
+  font-family: inherit;
+}
+
+.container {
+  margin: auto;
+  padding: 3.5rem;
+  max-width: 70rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+/************** HEADER **************/
+
+.title {
+  color: #dbddda;
+  font-size: 1.4rem;
+  margin-bottom: 3rem;
+}
+
+.main-logo {
+  width: 32rem;
+}
+
+.main-logo-container {
+  margin-bottom: 3rem;
+}
+
+/************** MAIN **************/
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.btn-primary,
+.btn-secondary {
+  width: 17rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 3px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #dbddda;
+  color: #000;
+}
+
+.btn-secondary:hover {
+  box-shadow: 0 0 10px #adbc9f;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 14px #dbddda;
+}
+.btn-secondary {
+  background-color: #12372a;
+  color: #dbddda;
+  border: 1px solid #adbc9f;
+}
+
+.list-container {
+  display: flex;
+  gap: 8rem;
+  align-items: center;
+}
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.list-row {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-img {
+  width: 64px;
+  height: 64px;
+}
+
+.name-options-btn {
+  color: #979797;
+  width: 4rem;
+  background-color: transparent;
+  border: none;
+}
+
+.name-options-btn span {
+  cursor: pointer;
+}
+.name-options-btn span:hover {
+  text-decoration: underline;
+}
+
+.lower-btns-grp {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.name-input::placeholder {
+  text-align: center;
+  color: #000;
+}
+
+.name-input {
+  text-align: center;
+  font-family: inherit;
+}
+
+.player-info,
+.name-input {
+  width: 16rem;
+  background-color: #adbc9f;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  color: #000;
+  border-radius: 3px;
+  border: none;
+}
+
+/************** MODAL **************/
+.modal {
+  background-color: rgba(18, 55, 42, 0.95);
+  backdrop-filter: blur(0.8rem);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.countdown-timer {
+  color: #adbc9f;
+  font-size: 14rem;
+}
