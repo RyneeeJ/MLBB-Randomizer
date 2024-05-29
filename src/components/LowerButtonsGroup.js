@@ -36,7 +36,7 @@ export default function LowerButtonsGroup({
       )}
 
       {!isAddingPlayer && (
-        <Button className="btn-secondary third" onClick={onChangePlayers}>
+        <Button className="btn-secondary" onClick={onChangePlayers}>
           Change Players
         </Button>
       )}
