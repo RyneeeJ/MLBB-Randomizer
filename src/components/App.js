@@ -151,33 +151,47 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
-      <main className="main-content">
-        {isAddingPlayer && (
-          <Button className="btn-primary" onClick={handleAddPlayer}>
-            + Add Player
-          </Button>
-        )}
-        <ListContainer
-          onRemovePlayer={handleRemovePlayer}
-          isAddingPlayer={isAddingPlayer}
-          players={players}
-          onInputName={handleInputName}
-          roleClass={roleClass}
-          isHeroGenerated={isHeroGenerated}
-        />
-        <LowerButtonsGroup
-          isAddingPlayer={isAddingPlayer}
-          players={players}
-          onGenerateRoles={handleGenerateRoles}
-          onChangePlayers={handleChangePlayers}
-          onGenerateHeroes={handleGenerateHeroes}
-          setRoleClass={setRoleClass}
-        />
-      </main>
-      {isGeneratingHero && <CountdownModal onStopTimer={handleStopTimer} />}
+      <div className="inner-container">
+        <Header />
+        <main className="main-content">
+          {isAddingPlayer && (
+            <Button className="btn-add-player" onClick={handleAddPlayer}>
+              + Add Player
+            </Button>
+          )}
+          <ListContainer
+            onRemovePlayer={handleRemovePlayer}
+            isAddingPlayer={isAddingPlayer}
+            players={players}
+            onInputName={handleInputName}
+            roleClass={roleClass}
+            isHeroGenerated={isHeroGenerated}
+          />
+          <LowerButtonsGroup
+            isAddingPlayer={isAddingPlayer}
+            players={players}
+            onGenerateRoles={handleGenerateRoles}
+            onChangePlayers={handleChangePlayers}
+            onGenerateHeroes={handleGenerateHeroes}
+            setRoleClass={setRoleClass}
+          />
+        </main>
+        {isGeneratingHero && <CountdownModal onStopTimer={handleStopTimer} />}
+      </div>
     </div>
   );
 }
 
 export default App;
+
+// Possible ways to improve this project in the future:
+
+// 1. Seperate the Name input, Name and role display, and image display list items on different components to avoid 1 ListItem component with many props
+
+// 2. Maybe change the component layout returned from the App component
+
+//  3. need to have separate layouts/component for different list arrangements displayed. this is to easily modify layout using medias queries
+
+// 4. Render state-based jsx form state 'groupings' data
+
+// 5. Manage state using useContext to avoid prop drilling

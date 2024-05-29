@@ -17,7 +17,7 @@ button {
 
 .container {
   margin: auto;
-  padding: 3.5rem;
+  padding: 3.5rem 0;
   max-width: 70rem;
   height: 100vh;
   display: flex;
@@ -26,6 +26,10 @@ button {
   text-align: center;
 }
 
+.inner-container {
+  width: 100%;
+  padding: 0 1rem;
+}
 .modal.hidden {
   display: none;
 }
@@ -55,6 +59,7 @@ button {
   gap: 3rem;
 }
 
+.btn-add-player,
 .btn-primary,
 .btn-secondary {
   width: 17rem;
@@ -62,10 +67,11 @@ button {
   font-size: 1rem;
   border: none;
   border-radius: 3px;
-  transition: all 0.3s;
+  transition: box-shadow 0.3s;
   cursor: pointer;
 }
 
+.btn-add-player,
 .btn-primary {
   background-color: #dbddda;
   color: #000;
@@ -75,7 +81,8 @@ button {
   box-shadow: 0 0 10px #adbc9f;
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-add-player:hover {
   box-shadow: 0 0 14px #dbddda;
 }
 .btn-secondary {
@@ -104,8 +111,8 @@ button {
 }
 
 .hero-img {
-  width: 64px;
-  height: 64px;
+  width: 4rem;
+  height: 4rem;
 }
 
 .remove-player-btn,
@@ -128,6 +135,8 @@ button {
 .lower-btns-grp {
   display: flex;
   gap: 2.5rem;
+  width: 100%;
+  justify-content: center;
 }
 
 .name-input::placeholder {
@@ -152,6 +161,9 @@ button {
   transition: all 0.3s;
 }
 
+.player-info {
+  overflow-x: hidden;
+}
 .player-info.highlight {
   box-shadow: inset 0 0 8px 2px #12372a;
 }

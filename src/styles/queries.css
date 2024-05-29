@@ -1,0 +1,157 @@
+@media (max-width: 1300px) {
+  .main-logo {
+    width: 25rem;
+  }
+}
+
+@media (max-width: 1050px) {
+  .container {
+    padding: 2.5rem 0;
+  }
+
+  .main-content {
+    gap: 2.5rem;
+  }
+
+  .main-logo-container,
+  .title {
+    margin-bottom: 2.5rem;
+  }
+
+  .list-container {
+    gap: 2.5rem;
+  }
+
+  .lower-btns-grp {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .btn-secondary:nth-child(1) {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: end;
+  }
+
+  .btn-secondary:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .btn-primary {
+    transform: translateX(53%);
+    justify-self: end;
+  }
+}
+
+@media (max-width: 770px) {
+  .main-logo {
+    width: 20rem;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .player-info {
+    width: 12rem;
+  }
+
+  .list-row {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 2rem 0;
+  }
+  .btn-add-player,
+  .btn-primary,
+  .btn-secondary {
+    width: 12rem;
+    font-size: 0.8rem;
+    /* font-weight: 600; */
+  }
+
+  .main-logo {
+    width: 16rem;
+  }
+
+  .main-logo-container,
+  .title {
+    margin-bottom: 2rem;
+  }
+
+  .btn-primary {
+    transform: translateX(6.5rem);
+  }
+
+  .hero-img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .list-container {
+    gap: 1.5rem;
+  }
+
+  .name-input {
+    width: 14rem;
+  }
+
+  .name-label,
+  .remove-player-btn {
+    width: 5.5rem;
+    font-size: 0.8rem;
+  }
+
+  .player-info {
+    font-size: 0.9rem;
+    width: 10rem;
+    padding: 1rem;
+  }
+
+  .countdown-timer {
+    font-size: 10rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-img {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+  .list-container {
+    gap: 1rem;
+  }
+
+  .player-info {
+    width: 8rem;
+    padding: 0.8rem 0;
+  }
+
+  .name-input {
+    width: 11rem;
+  }
+
+  .name-label,
+  .remove-player-btn {
+    width: 3.5rem;
+    font-size: 0.8rem;
+  }
+
+  .lower-btns-grp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-primary {
+    transform: translateX(0);
+  }
+}
